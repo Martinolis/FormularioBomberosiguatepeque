@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Reporte - Estación de Bomberos de Siguatepeque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        /* Encabezado con imágenes */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .header img {
+            width: 60px;
+            height: auto;
+        }
+        .header h1 {
+            flex: 1;
+            color: #b22222;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            margin-top: 5px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="file"] {
+            padding: 3px;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #b22222;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #8b1a1a;
+        }
+        .photo-section {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Encabezado con imágenes -->
+        <div class="header">
+            <img src="https://bomberos.hn/assets/images/logo.png" alt="Logo izquierda">
+            <h1>Estación de Bomberos de Siguatepeque</h1>
+            <img src="https://bomberos.hn/assets/images/logo.png" alt="Logo derecha">
+        </div>
+
+        <div class="subtitle">Formulario de Información Preventivo y Correctivo</div>
+
+        <form action="https://formspree.io/f/xpwlkkyn" method="POST" enctype="multipart/form-data">
+            <label for="fecha">Fecha y Hora:</label>
+            <input type="text" id="fecha" name="fecha" readonly>
+
+            <label for="tipo_vehiculo">Tipo de Vehículo:</label>
+            <select id="tipo_vehiculo" name="tipo_vehiculo" required>
+                <option value="">Seleccione el tipo de vehículo</option>
+                <option value="Camión Contraincendios">Camión Contraincendios</option>
+                <option value="Ambulancia">Ambulancia</option>
+                <option value="Rescate">Rescate</option>
+                <option value="Forestal">Forestal</option>
+                <option value="Otro">Otro</option>
+            </select>
+
+            <label for="placa">Número de Placa:</label>
+            <input type="text" id="placa" name="placa" placeholder="Ingrese el número de placa" required>
+
+            <label for="tipo_mantenimiento">Tipo de Mantenimiento:</label>
+            <select id="tipo_mantenimiento" name="tipo_mantenimiento" required>
+                <option value="">Seleccione el tipo de mantenimiento</option>
+                <option value="Preventivo">Preventivo</option>
+                <option value="Correctivo">Correctivo</option>
+            </select>
+
+            <label for="anomalia">Descripción de la Anomalía o Trabajo Realizado:</label>
+            <textarea id="anomalia" name="anomalia" placeholder="Describa la anomalía encontrada o el trabajo realizado" required></textarea>
+
+            <label for="responsable">Responsable del Reporte:</label>
+            <input type="text" id="responsable" name="responsable" placeholder="Nombre del responsable" required>
+
+            <label for="correo">Correo Institucional:</label>
+            <input type="email" id="correo" name="correo" placeholder="Correo para recibir el reporte" value="siguatepeque@bomberoshonduras.com" required>
+
+            <div class="photo-section">
+                <label>Fotografías (hasta 4):</label>
+                <input type="file" id="foto1" name="foto1" accept="image/*">
+                <input type="file" id="foto2" name="foto2" accept="image/*">
+                <input type="file" id="foto3" name="foto3" accept="image/*">
+                <input type="file" id="foto4" name="foto4" accept="image/*">
+            </div>
+
+            <button type="submit">Enviar Reporte</button>
+        </form>
+    </div>
+
+    <script>
+        // Rellenar automáticamente la fecha y hora actual
+        const fechaInput = document.getElementById('fecha');
+        const now = new Date();
+        const fechaHora = now.toLocaleString('es-HN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        fechaInput.value = fechaHora;
+    </script>
+</body>
+</html>
